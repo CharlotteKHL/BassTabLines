@@ -22,4 +22,9 @@ public class Tab {
         return E;
     }
 
+    @Override
+    public String toString(){
+        return G + "\n" + D + "\n" + A + "\n" + E;
+    }
+
 }
