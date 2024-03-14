@@ -14,10 +14,11 @@ public class Main {
         Boolean stay = true;
         printMenu();
         while(stay && keyboard.hasNext()){
-            String input = keyboard.next();
+            String input = keyboard.nextLine();
             
             switch(input){
                 case "1":
+
                 printNewTab();
                 break;
 
@@ -61,29 +62,18 @@ public class Main {
     /** Prints the create tabs menu.
      */
     private static void printNewTab() {
-        
-        Boolean stay = true;
+
         System.out.println("Input the base chords:");
-        System.out.println("Enter 'exit' to exit to main menu");
-        while(stay && keyboard.hasNext()){
-            String input = keyboard.next();
-
-            switch(input){
-                case "exit":
-                stay = false;
-                break;
-
-                default:
-                //call function to create new tab
-                System.out.println("Here is your new bass line:");
-                
-                System.out.println();
-                System.out.println("Input the base chords:");
-                System.out.println("Enter 'exit' to exit to main menu");
-            }
-
+        String input = keyboard.nextLine();
             
-        }
+        try {
+            Tab newTab = new Tab(input);
+            System.out.println("This is your new tab: ");
+            System.out.println(newTab);
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+        }    
+        
     }
 
     /** Prints the current tabs.
