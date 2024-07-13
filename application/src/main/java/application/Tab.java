@@ -28,7 +28,20 @@ public class Tab {
         return E;
     }
 
-    public Tab(){}
+    public Tab(){
+        majorChordConversion.put("C", "D2");
+        majorChordConversion.put("C#", "G1");
+        majorChordConversion.put("D", "G2");
+        majorChordConversion.put("D#", "D1");
+        majorChordConversion.put("E", "G1");
+        majorChordConversion.put("F", "E1");
+        majorChordConversion.put("F#", "E1");
+        majorChordConversion.put("G", "A2");
+        majorChordConversion.put("G#", "D1");
+        majorChordConversion.put("A", "D1");
+        majorChordConversion.put("A#", "A1");
+        majorChordConversion.put("B", "A1");
+    }
 
     public Tab(String input) throws InvalidInputException{
         majorChordConversion.put("C", "D2");
@@ -48,8 +61,11 @@ public class Tab {
     }
 
     public void createTab(String input) throws InvalidInputException{
-      
-        System.out.println("Input the base chords:");
+        G = "G|";
+        D = "D|"; 
+        A = "A|";
+        E = "E|";
+
         String[] chords = input.split(" ");
         int lengthCount = 0;
         String last = "";
@@ -63,6 +79,7 @@ public class Tab {
             D += "-";
             A += "-";
             E += "-";
+
             switch(chord){
                 case "-":
                     G += "-";
@@ -89,7 +106,7 @@ public class Tab {
 
                 default:
                     String bassNote = majorChordConversion.get(chord);
-                    if(bassNote != null){
+                    if((bassNote != null)){
                         char note = bassNote.charAt(0);
                         String fret = bassNote.substring(1);
                         lengthCount++;
@@ -122,7 +139,9 @@ public class Tab {
                                 A += "-";
                         }
                     } else {
-                        throw new InvalidInputException(INVALID_NOTE_MSG);
+                        System.out.println(chord);
+
+                        throw new InvalidInputException(INVALID_NOTE_MSG +  " chord = " + chord + "Bassnote =" + bassNote);
                     }
 
             }

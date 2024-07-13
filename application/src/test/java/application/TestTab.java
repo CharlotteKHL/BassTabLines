@@ -53,12 +53,12 @@ class TestTabs{
 
     @Test
     void testDiffChords() throws InvalidInputException{
-      test.createTab("A B - C + A C# - F +");
+      test.createTab("A B - C + A C# - F");
       assertEquals(
           "G|---------|---1-----|\n" +
           "D|-1-----2-|-1-------|\n" +
           "A|---1-----|---------|\n" +
           "E|---------|-------1-|", 
-        test.toString(), "Test 1 bar with just A");
+        test.toString(), "Test 2 bars");
     }
 }
