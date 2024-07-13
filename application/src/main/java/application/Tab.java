@@ -9,8 +9,8 @@ public class Tab {
     private String A = "A|";
     private String E = "E|";
     private HashMap<String,String> majorChordConversion = new HashMap<String,String>();
-    private String INVALID_NOTE_MSG = "An invalid note has been included, please only include: C,C#,D,D#,E,F,F#,G,G#,A,A#,B";
-    private String INVALID_LENGTH_MSG = "Your input is invalid, please only use 4 beats per bar";
+    private final String INVALID_NOTE_MSG = "An invalid note has been included, please only include: C,C#,D,D#,E,F,F#,G,G#,A,A#,B";
+    private final String INVALID_LENGTH_MSG = "Your input is invalid, please only use 4 beats per bar";
 
     public String getG(){
         return G;
@@ -68,13 +68,8 @@ public class Tab {
 
         String[] chords = input.split(" ");
         int lengthCount = 0;
-        String last = "";
 
         for(String chord : chords){
-            last = chord;
-            if(lengthCount >  4){
-                throw new InvalidInputException(INVALID_LENGTH_MSG);
-            }
             G += "-";
             D += "-";
             A += "-";
@@ -141,9 +136,13 @@ public class Tab {
                     } else {
                         System.out.println(chord);
 
-                        throw new InvalidInputException(INVALID_NOTE_MSG +  " chord = " + chord + "Bassnote =" + bassNote);
+                        throw new InvalidInputException(INVALID_NOTE_MSG);
                     }
 
+            }
+
+            if(lengthCount >  4){
+                throw new InvalidInputException(INVALID_LENGTH_MSG);
             }
         }
         if(lengthCount != 0) {

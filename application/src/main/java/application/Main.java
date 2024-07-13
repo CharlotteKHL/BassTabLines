@@ -70,9 +70,7 @@ public class Main {
             Tab newTab = new Tab(input);
             System.out.println("This is your new tab: ");
             System.out.println(newTab);
-            newTab.createTab("A A A A");
         } catch (InvalidInputException e) {
-            System.err.println("hi");
             System.out.println(e.getMessage());
         }    
         

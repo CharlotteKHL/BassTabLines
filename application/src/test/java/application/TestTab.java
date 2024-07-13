@@ -1,7 +1,8 @@
 package application;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -60,5 +61,32 @@ class TestTabs{
           "A|---1-----|---------|\n" +
           "E|---------|-------1-|", 
         test.toString(), "Test 2 bars");
+    }
+
+    @Test
+    void testLongTab() throws InvalidInputException{
+
+      InvalidInputException e = assertThrows(InvalidInputException.class, () -> test.createTab("A A A A A"));
+      assertEquals("Your input is invalid, please only use 4 beats per bar", e.getMessage(),
+      "Test exception thrown when input is too long");
+
+    }
+
+    @Test
+    void testInvalidNote() throws InvalidInputException{
+      
+      InvalidInputException e = assertThrows(InvalidInputException.class, () -> test.createTab("="));
+      assertEquals("An invalid note has been included, please only include: C,C#,D,D#,E,F,F#,G,G#,A,A#,B", e.getMessage(),
+      "Test exception thrown when input includes invalid character");
+
+    }
+
+    @Test
+    void testEmptyNote() throws InvalidInputException{
+      
+      InvalidInputException e = assertThrows(InvalidInputException.class, () -> test.createTab("A   B A"));
+      assertEquals("An invalid note has been included, please only include: C,C#,D,D#,E,F,F#,G,G#,A,A#,B", e.getMessage(),
+      "Test exception thrown when input includes an empty character in the middle");
+
     }
 }
